@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dither — todos &amp; planning</title>
+<meta name="description" content="The beautiful to-do app that isn't locked to one platform. One-time purchase, no subscription, no account. Yours forever.">
+<meta property="og:title" content="dither — todos &amp; planning">
+<meta property="og:description" content="The beautiful to-do app that isn't locked to one platform. Yours forever.">
+<meta property="og:url" content="https://getdither.app">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='white'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='700' text-anchor='middle'%3E%3Ctspan fill='%233568D4'%3Edt%3C/tspan%3E%3Ctspan fill='%235FA8FF'%3Er%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#101013; --surface:#1a1a1f; --line:#26262c;
+    --ink:#ededf0; --ink2:#9a9aa2;
+    --blue:#3568D4; --sky:#5FA8FF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--sky);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  nav{display:flex;align-items:center;gap:28px;padding:22px 0}
+  nav .links{margin-left:auto;display:flex;gap:22px;font-size:14px}
+  nav .links a{color:var(--ink2)}
+  nav .links a:hover{color:var(--ink);text-decoration:none}
+
+  .mark{font-size:24px;font-weight:700;letter-spacing:-0.5px}
+  .mark b{color:#fff;font-weight:700}
+  .mark span{color:var(--sky)}
+
+  header.hero{padding:88px 0 72px;text-align:left}
+  .hero h1{
+    font-size:clamp(38px,6vw,60px); line-height:1.08; font-weight:700;
+    letter-spacing:-1.5px; max-width:15ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--blue),var(--sky));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub{margin:22px 0 0;font-size:19px;color:var(--ink2);max-width:52ch}
+  .cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-block;padding:14px 26px;border-radius:12px;
+    font-size:16px;font-weight:600;
+  }
+  .btn.primary{background:var(--blue);color:#fff}
+  .btn.primary:hover{background:#3f74e0;text-decoration:none}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--ink2);text-decoration:none}
+  .cta .fine{font-size:13px;color:var(--ink2);width:100%}
+
+  .strip{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;font-size:14px;color:var(--ink2);
+  }
+  .strip .wrap{display:flex;gap:28px;flex-wrap:wrap}
+  .strip b{color:var(--ink);font-weight:600}
+
+  section.features{padding:72px 0 8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:26px;
+  }
+  .card h3{font-size:17px;font-weight:600;margin-bottom:12px}
+  .card h3 i{font-style:normal;margin-right:8px}
+  .card ul{list-style:none}
+  .card li{
+    font-size:14.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;
+  }
+  .card li::before{
+    content:'';position:absolute;left:2px;top:13px;width:7px;height:7px;
+    border-radius:2px;background:var(--blue);
+  }
+  .card li b{color:var(--ink);font-weight:600}
+
+  section.platforms{padding:64px 0}
+  section.platforms h2, section.download h2{
+    font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px;
+  }
+  .plat{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{
+    border:1px solid var(--line);border-radius:999px;padding:9px 18px;
+    font-size:14px;color:var(--ink2);
+  }
+  .pill.now{border-color:var(--blue);color:var(--ink)}
+  .pill.now b{color:var(--sky);font-weight:600}
+
+  section.download{padding:8px 0 72px}
+  .steps{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .steps ol{margin:0 0 0 20px}
+  .steps li{padding:6px 0;font-size:15px;color:var(--ink2)}
+  .steps li b{color:var(--ink);font-weight:600}
+  .steps .note{
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--ink2);
+  }
+
+  footer{border-top:1px solid var(--line);padding:28px 0 48px;font-size:13px;color:var(--ink2)}
+  footer .wrap{display:flex;gap:24px;flex-wrap:wrap}
+  footer .spacer{margin-left:auto}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="mark"><b>dith</b><span>er</span></div>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="/buy">Buy</a>
+      <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Plan your day, <em>beautifully</em>.</h1>
+    <p class="sub">dither is the premium to-do app for people who want
+    Things-level polish without the platform lock-in. One-time purchase.
+    No subscription. No account. Your data stays on your device.</p>
+    <div class="cta">
+      <a class="btn primary" href="#download">Download for Windows</a>
+      <a class="btn ghost" href="/buy">$24.99 once — yours forever</a>
+      <span class="fine">Free 21-day trial, no sign-up. Android, iPhone, iPad and Mac are in store review.</span>
+    </div>
+  </header>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>One-time purchase</b> — never rented</span>
+    <span><b>No account</b> — nothing to sign up for</span>
+    <span><b>No tracking</b> — nothing leaves your device</span>
+    <span><b>Full export</b> — JSON &amp; Markdown, always</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="features" id="features">
+    <div class="grid">
+      <div class="card">
+        <h3><i>🗓️</i>Plan without friction</h3>
+        <ul>
+          <li><b>Today, Upcoming, Anytime, Incoming</b> — a workflow, not just lists</li>
+          <li>Type <b>“call mum every 2nd tue 9am”</b> — it’s scheduled</li>
+          <li>Deadlines separate from start dates, like real work</li>
+          <li><b>Dependencies</b>: lock a to-do until its prerequisite is done</li>
+          <li>Subtasks with progress right on the row</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i>🔔</i>Reminders that actually remind</h3>
+        <ul>
+          <li>Re-fire until you act — <b>done or snooze from the notification</b></li>
+          <li>Recurring alarms with their own clock</li>
+          <li>Reminders on notes and pages, not just tasks</li>
+          <li>A badge that counts <b>only what’s due right now</b> — zero is reachable</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i>📝</i>More than tasks</h3>
+        <ul>
+          <li><b>Scratchpads</b>: to-dos, notes, pages, files and hand-drawn scribbles on one surface</li>
+          <li>Markdown pages with a reading view, links and code blocks</li>
+          <li>Your own calendars (.ics) beside your to-dos</li>
+          <li>Custom sections, tags, pinned items, separate profiles</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i>🔓</i>Yours, not ours</h3>
+        <ul>
+          <li>Sync through <b>your own cloud folder</b> — Drive, Dropbox, iCloud, anything that syncs</li>
+          <li>Import from Things 3 and Todoist</li>
+          <li>Export everything, even after the trial ends</li>
+          <li>Unlocked by a license key that <b>works offline, forever</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="platforms">
+    <h2>Every platform. One philosophy.</h2>
+    <div class="plat">
+      <span class="pill now"><b>Windows</b> — available now</span>
+      <span class="pill">Android — in review</span>
+      <span class="pill">iPhone &amp; iPad — in review</span>
+      <span class="pill">Mac — in review</span>
+    </div>
+  </section>
+
+  <section class="download" id="download">
+    <h2>Download for Windows</h2>
+    <div class="steps">
+      <ol>
+        <li><a href="https://github.com/squeakybadger/getdither/releases/latest/download/dither-windows.zip"><b>Download dither for Windows</b></a> (free 21-day trial, Windows 10/11, x64)</li>
+        <li>Unzip, right-click <b>install-dither.ps1</b> → Run with PowerShell, approve the admin prompt — first install only</li>
+        <li>Find <b>dither</b> in your Start menu. Later updates are one double-click.</li>
+      </ol>
+      <p class="note">Early access is signed with our own certificate, which the
+      one-time install script trusts — that’s what the admin prompt is for.
+      The Microsoft Store listing (no script, no prompts) is on its way.</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 komponent</span>
+    <span class="spacer"></span>
+    <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+    <a href="/buy">Buy</a>
+  </div>
+</footer>
+
+</body>
+</html>
