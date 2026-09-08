@@ -49,13 +49,15 @@
   .hero p.sub{margin:22px 0 0;font-size:19px;color:var(--ink2);max-width:52ch}
   .cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{
-    display:inline-block;padding:14px 26px;border-radius:12px;
-    font-size:16px;font-weight:600;
+    display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:12px;
+    font-size:16px;font-weight:600;text-decoration:none;
   }
+  .btn svg{width:20px;height:20px;flex:none}
   .btn.primary{background:var(--blue);color:#fff}
   .btn.primary:hover{background:#3f74e0;text-decoration:none}
   .btn.ghost{border:1px solid var(--line);color:var(--ink)}
   .btn.ghost:hover{border-color:var(--ink2);text-decoration:none}
+  .btn.soon{border:1px solid var(--line);color:var(--ink2);opacity:.5;cursor:default}
   .cta .fine{font-size:13px;color:var(--ink2);width:100%}
 
   .strip{
@@ -88,12 +90,17 @@
     font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px;
   }
   .plat{display:flex;gap:12px;flex-wrap:wrap}
+  .prices{margin-top:16px;font-size:14px;color:var(--ink2)}
+  .prices b{color:var(--ink)}
   .pill{
+    display:inline-flex;align-items:center;gap:8px;
     border:1px solid var(--line);border-radius:999px;padding:9px 18px;
-    font-size:14px;color:var(--ink2);
+    font-size:14px;color:var(--ink2);text-decoration:none;
   }
+  .pill svg{width:16px;height:16px;flex:none}
   .pill.now{border-color:var(--blue);color:var(--ink)}
   .pill.now b{color:var(--sky);font-weight:600}
+  .pill.soon{opacity:.5;cursor:default}
 
   section.download{padding:8px 0 72px}
   .steps{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
@@ -129,9 +136,23 @@
     Things-level polish without the platform lock-in. One-time purchase.
     No subscription. No account. Your data stays on your device.</p>
     <div class="cta">
-      <a class="btn primary" href="#download">Download for Windows</a>
-      <a class="btn ghost" href="/buy">$24.99 once — yours forever</a>
-      <span class="fine">Free 21-day trial, no sign-up. Android, iPhone, iPad and Mac are in store review.</span>
+      <a class="btn primary" href="#download">
+        <svg viewBox="0 0 88 88" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v34.7H0zM40.4 6.9 88 0v41.4H40.4zM0 46.2h36V81l-36-5zM40.4 46.2H88V88l-47-6.6z"/></svg>
+        Download for Windows
+      </a>
+      <a class="btn ghost" href="https://play.google.com/store/apps/details?id=dev.dither.app">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00d9ff" d="M99 8c-9 5-15 15-15 27v442c0 12 6 22 15 27l257-248z"/><path fill="#00f076" d="M99 8c5-3 12-3 18 0l193 111-84 84z"/><path fill="#ffbc00" d="M310 227l84 84-84 84-84-84z"/><path fill="#ff3a44" d="M310 285l84 84-193 111c-6 3-13 3-18 0z"/></svg>
+        Get it on Google Play
+      </a>
+      <span class="btn soon">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
+        iPhone &amp; iPad — coming soon
+      </span>
+      <span class="btn soon">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
+        Mac — coming soon
+      </span>
+      <span class="fine">Free 21-day trial, no sign-up. iPhone, iPad and Mac are in store review.</span>
     </div>
   </header>
 </div>
@@ -191,11 +212,25 @@
   <section class="platforms">
     <h2>Every platform. One philosophy.</h2>
     <div class="plat">
-      <span class="pill now"><b>Windows</b> — available now</span>
-      <span class="pill">Android — in review</span>
-      <span class="pill">iPhone &amp; iPad — in review</span>
-      <span class="pill">Mac — in review</span>
+      <span class="pill now">
+        <svg viewBox="0 0 88 88" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v34.7H0zM40.4 6.9 88 0v41.4H40.4zM0 46.2h36V81l-36-5zM40.4 46.2H88V88l-47-6.6z"/></svg>
+        <b>Windows</b> — available now
+      </span>
+      <a class="pill now" href="https://play.google.com/store/apps/details?id=dev.dither.app">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00d9ff" d="M99 8c-9 5-15 15-15 27v442c0 12 6 22 15 27l257-248z"/><path fill="#00f076" d="M99 8c5-3 12-3 18 0l193 111-84 84z"/><path fill="#ffbc00" d="M310 227l84 84-84 84-84-84z"/><path fill="#ff3a44" d="M310 285l84 84-193 111c-6 3-13 3-18 0z"/></svg>
+        <b>Android</b> — available now
+      </a>
+      <span class="pill soon">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
+        iPhone &amp; iPad — in review
+      </span>
+      <span class="pill soon">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
+        Mac — in review
+      </span>
     </div>
+    <p class="prices">Android, iPhone &amp; iPad — <b>$9.99</b>. Mac &amp; Windows — <b>$24.99</b>.
+    Free 21-day trial to get to know dither.</p>
   </section>
 
   <section class="download" id="download">
