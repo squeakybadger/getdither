@@ -49,13 +49,18 @@
   }
   .hero p.sub{margin:22px 0 0;font-size:19px;color:var(--ink2);max-width:52ch}
   .cta{margin-top:36px}
-  .cta .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .cta .row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
   .btn{
-    display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 10px;border-radius:12px;
-    font-size:15px;font-weight:600;text-decoration:none;white-space:nowrap;
+    display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 8px;border-radius:12px;
+    font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;
     min-width:0;
   }
   .btn span, .btn{overflow:hidden;text-overflow:ellipsis}
+  .btn.small{font-size:13px;color:var(--ink2)}
+  .btn.small svg{width:16px;height:16px}
+  @media (max-width:900px){
+    .cta .row{grid-template-columns:repeat(3,1fr)}
+  }
   @media (max-width:640px){
     .cta .row{grid-template-columns:repeat(2,1fr)}
     .btn{font-size:13px;padding:12px 8px;white-space:normal;text-align:center}
@@ -145,21 +150,25 @@
     No subscription. No account. Your data stays on your device.</p>
     <div class="cta">
       <div class="row">
-        <a class="btn primary" href="#download">
+        <a class="btn primary" href="https://apps.microsoft.com/detail/9N11NZLDHTSS">
           <svg viewBox="0 0 88 88" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v34.7H0zM40.4 6.9 88 0v41.4H40.4zM0 46.2h36V81l-36-5zM40.4 46.2H88V88l-47-6.6z"/></svg>
-          Download for Windows
+          Microsoft Store
+        </a>
+        <a class="btn ghost small" href="#download">
+          <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+          Direct .exe
         </a>
         <a class="btn ghost" href="https://play.google.com/store/apps/details?id=dev.dither.app">
           <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00d9ff" d="M99 8c-9 5-15 15-15 27v442c0 12 6 22 15 27l257-248z"/><path fill="#00f076" d="M99 8c5-3 12-3 18 0l193 111-84 84z"/><path fill="#ffbc00" d="M310 227l84 84-84 84-84-84z"/><path fill="#ff3a44" d="M310 285l84 84-193 111c-6 3-13 3-18 0z"/></svg>
-          Get it on Google Play
+          Google Play
         </a>
         <a class="btn ghost" href="https://apps.apple.com/app/id6806541319">
           <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
-          Get it on the App Store
+          App Store
         </a>
         <a class="btn ghost" href="https://apps.apple.com/app/id6807886061?mt=12">
           <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 8 184.8 8 273.5c0 25.9 4.7 52.7 14.2 80.4 12.6 36.7 58.1 126.7 105.6 125.2 24.9-.6 42.5-17.7 74.9-17.7 31.5 0 47.8 17.7 75.6 17.7 47.9-.7 89-82.5 101-119.3-64.3-30.3-60.6-88.8-60.6-90.9zM256.3 88.9c26.6-31.6 24.2-60.4 23.5-70.9-23.6 1.4-50.9 16.4-66.6 34.8-17.3 19.6-27.5 44-25.3 69.4 24.4 1.9 46.7-10.4 68.4-33.3z"/></svg>
-          Get it on the Mac App Store
+          Mac App Store
         </a>
       </div>
       <span class="fine">Free 21-day trial, no sign-up. Every platform is live.</span>
@@ -240,10 +249,10 @@
   <section class="platforms">
     <h2>Every platform. One philosophy.</h2>
     <div class="plat">
-      <span class="pill now">
+      <a class="pill now" href="https://apps.microsoft.com/detail/9N11NZLDHTSS">
         <svg viewBox="0 0 88 88" fill="currentColor" aria-hidden="true"><path d="M0 12.4 36 7.5v34.7H0zM40.4 6.9 88 0v41.4H40.4zM0 46.2h36V81l-36-5zM40.4 46.2H88V88l-47-6.6z"/></svg>
         <b>Windows</b> — available now
-      </span>
+      </a>
       <a class="pill now" href="https://play.google.com/store/apps/details?id=dev.dither.app">
         <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00d9ff" d="M99 8c-9 5-15 15-15 27v442c0 12 6 22 15 27l257-248z"/><path fill="#00f076" d="M99 8c5-3 12-3 18 0l193 111-84 84z"/><path fill="#ffbc00" d="M310 227l84 84-84 84-84-84z"/><path fill="#ff3a44" d="M310 285l84 84-193 111c-6 3-13 3-18 0z"/></svg>
         <b>Android</b> — available now
@@ -262,17 +271,18 @@
   </section>
 
   <section class="download" id="download">
-    <h2>Download for Windows</h2>
+    <h2>Direct installer for Windows</h2>
     <div class="steps">
       <ol>
         <li><a href="https://github.com/squeakybadger/getdither/releases/latest/download/dither-setup.exe"><b>Download dither-setup.exe</b></a> (free 21-day trial, Windows 10/11, x64, 12 MB)</li>
         <li>Run it — installs for your user, no admin prompt, and launches dither at the end.</li>
         <li>Updates install straight over the top; your data stays put. Uninstall from Settings → Apps.</li>
       </ol>
-      <p class="note">If Windows shows “Windows protected your PC”, click
-      <b>More info</b> → <b>Run anyway</b>. That screen appears for any new
-      installer until it builds reputation with Microsoft; a Microsoft Store
-      listing, which skips it entirely, is on its way.</p>
+      <p class="note">Prefer automatic updates and no security prompts?
+      Get dither from the <a href="https://apps.microsoft.com/detail/9N11NZLDHTSS">Microsoft Store</a>
+      instead. This direct download is for anyone who'd rather sideload —
+      Windows shows “Windows protected your PC” the first time; click
+      <b>More info</b> → <b>Run anyway</b>.</p>
     </div>
   </section>
 </div>
