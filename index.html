@@ -29,7 +29,10 @@
   a:hover{text-decoration:underline}
 
   nav{display:flex;align-items:center;gap:28px;padding:22px 0}
-  nav .links{margin-left:auto;display:flex;gap:22px;font-size:14px}
+  nav .links{margin-left:auto;display:flex;gap:22px;font-size:14px;flex-wrap:wrap;justify-content:flex-end}
+  @media (max-width:640px){
+    nav .links{gap:14px;font-size:13px}
+  }
   nav .links a{color:var(--ink2)}
   nav .links a:hover{color:var(--ink);text-decoration:none}
 
@@ -139,8 +142,9 @@
       <a href="#features">Features</a>
       <a href="#download">Download</a>
       <a href="/vs-things-3">vs Things 3</a>
+      <a href="/vs-todoist">vs Todoist</a>
       <a href="/buy">Buy</a>
-      <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+      <a href="/privacy">Privacy</a>
     </div>
   </nav>
 
@@ -292,7 +296,7 @@
   <div class="wrap">
     <span>© 2026 komponent</span>
     <span class="spacer"></span>
-    <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+    <a href="/privacy">Privacy</a>
     <a href="/buy">Buy</a>
   </div>
 </footer>
