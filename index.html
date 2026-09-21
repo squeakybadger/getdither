@@ -83,6 +83,20 @@
   .strip .wrap{display:flex;gap:28px;flex-wrap:wrap}
   .strip b{color:var(--ink);font-weight:600}
 
+  section.shots{padding:64px 0 8px}
+  section.shots h2{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px}
+  .shots-grid{display:grid;grid-template-columns:1.05fr 1.05fr 1.6fr;gap:18px;align-items:end}
+  .shot{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .shot img{display:block;width:100%;height:auto}
+  .shot figcaption{padding:12px 16px;font-size:13px;color:var(--ink2);border-top:1px solid var(--line)}
+  .shot figcaption b{color:var(--ink);font-weight:600}
+  @media (max-width:760px){
+    .shots-grid{grid-template-columns:1fr 1fr;grid-template-areas:"mac mac" "iphone android"}
+    .shots-grid .shot:nth-child(1){grid-area:iphone}
+    .shots-grid .shot:nth-child(2){grid-area:android}
+    .shots-grid .shot:nth-child(3){grid-area:mac}
+  }
+
   section.features{padding:72px 0 8px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
   .card{
@@ -188,6 +202,26 @@
     <span><b>No tracking</b> — nothing leaves your device</span>
     <span><b>Full export</b> — JSON &amp; Markdown, always</span>
   </div>
+</div>
+
+<div class="wrap">
+  <section class="shots">
+    <h2>One app, every screen</h2>
+    <div class="shots-grid">
+      <figure class="shot">
+        <img src="/shots/iphone-today.jpg" alt="dither's Today view on iPhone" loading="lazy">
+        <figcaption><b>iPhone &amp; iPad</b> — same app, same data</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/shots/android-today.jpg" alt="dither's Today view on Android" loading="lazy">
+        <figcaption><b>Android</b> — phone, tablet, foldable</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/shots/mac-today.jpg" alt="dither's Today view on Mac, with a sidebar of Home, Calendar and Scratchpads" loading="lazy">
+        <figcaption><b>Mac &amp; Windows</b> — a proper desktop layout, not a stretched phone app</figcaption>
+      </figure>
+    </div>
+  </section>
 </div>
 
 <div class="wrap">
