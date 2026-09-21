@@ -84,17 +84,36 @@
   .strip b{color:var(--ink);font-weight:600}
 
   section.shots{padding:64px 0 8px}
-  section.shots h2{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:20px}
-  .shots-grid{display:grid;grid-template-columns:1.05fr 1.05fr 1.6fr;gap:18px;align-items:end}
-  .shot{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .shot img{display:block;width:100%;height:auto}
-  .shot figcaption{padding:12px 16px;font-size:13px;color:var(--ink2);border-top:1px solid var(--line)}
-  .shot figcaption b{color:var(--ink);font-weight:600}
-  @media (max-width:760px){
-    .shots-grid{grid-template-columns:1fr 1fr;grid-template-areas:"mac mac" "iphone android"}
-    .shots-grid .shot:nth-child(1){grid-area:iphone}
-    .shots-grid .shot:nth-child(2){grid-area:android}
-    .shots-grid .shot:nth-child(3){grid-area:mac}
+  section.shots h2{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px}
+  section.shots p.lede{color:var(--ink2);font-size:15px;margin-bottom:24px}
+
+  .shots-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .stab{
+    padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;
+    color:var(--ink2);font:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  }
+  .stab:hover{border-color:var(--ink2)}
+  .stab.active{border-color:var(--blue);color:var(--ink);background:rgba(53,104,212,0.12)}
+
+  .shots-viewer{display:flex;align-items:center;gap:12px}
+  .sframe{
+    flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    height:560px;
+  }
+  .sframe img{max-width:100%;max-height:100%;width:auto;height:auto;display:block}
+  .sarrow{
+    flex:none;width:44px;height:44px;border-radius:999px;border:1px solid var(--line);
+    background:var(--surface);color:var(--ink);font-size:20px;cursor:pointer;line-height:1;
+  }
+  .sarrow:hover{border-color:var(--ink2)}
+  .sdots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+  .sdot{width:8px;height:8px;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0}
+  .sdot.active{background:var(--sky)}
+
+  @media (max-width:640px){
+    .sframe{height:420px}
+    .sarrow{width:36px;height:36px;font-size:16px}
   }
 
   section.features{padding:72px 0 8px}
@@ -205,23 +224,92 @@
 </div>
 
 <div class="wrap">
-  <section class="shots">
-    <h2>One app, every screen</h2>
-    <div class="shots-grid">
-      <figure class="shot">
-        <img src="/shots/iphone-today.jpg" alt="dither's Today view on iPhone" loading="lazy">
-        <figcaption><b>iPhone &amp; iPad</b> — same app, same data</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="/shots/android-today.jpg" alt="dither's Today view on Android" loading="lazy">
-        <figcaption><b>Android</b> — phone, tablet, foldable</figcaption>
-      </figure>
-      <figure class="shot">
-        <img src="/shots/mac-today.jpg" alt="dither's Today view on Mac, with a sidebar of Home, Calendar and Scratchpads" loading="lazy">
-        <figcaption><b>Mac &amp; Windows</b> — a proper desktop layout, not a stretched phone app</figcaption>
-      </figure>
+  <section class="shots" id="screenshots">
+    <h2>See it in action</h2>
+    <p class="lede">Same app, every platform. Pick one to look around.</p>
+    <div class="shots-tabs">
+      <button class="stab active" data-platform="iphone" type="button">iPhone &amp; iPad</button>
+      <button class="stab" data-platform="android" type="button">Android</button>
+      <button class="stab" data-platform="mac" type="button">Mac &amp; Windows</button>
     </div>
+    <div class="shots-viewer">
+      <button class="sarrow sprev" type="button" aria-label="Previous screenshot">&#8249;</button>
+      <div class="sframe">
+        <img id="shot-img" src="" alt="" loading="lazy">
+      </div>
+      <button class="sarrow snext" type="button" aria-label="Next screenshot">&#8250;</button>
+    </div>
+    <div class="sdots" id="shot-dots"></div>
   </section>
+
+  <script>
+  (function(){
+    var SHOTS = {
+      iphone: [
+        {src:'/shots/iphone-1-today-dark.jpg', alt:'dither Today view on iPhone, dark mode'},
+        {src:'/shots/iphone-2-paste.jpg', alt:'Paste a list and get asked one to-do or many, on iPhone'},
+        {src:'/shots/iphone-3-scratchpad.jpg', alt:'A scratchpad with a hand-drawn scribble, on iPhone'},
+        {src:'/shots/iphone-4-page.jpg', alt:'A markdown page in reading view, on iPhone'},
+        {src:'/shots/iphone-5-calendar.jpg', alt:'Calendar view with dated items, on iPhone'}
+      ],
+      android: [
+        {src:'/shots/android-1-home-dark.jpg', alt:'dither Home view on Android, dark mode'},
+        {src:'/shots/android-2-today-dark.jpg', alt:'Today view on Android, dark mode'},
+        {src:'/shots/android-3-scratchpad-dark.jpg', alt:'A scratchpad on Android, dark mode'},
+        {src:'/shots/android-4-page-dark.jpg', alt:'A markdown page on Android, dark mode'},
+        {src:'/shots/android-5-calendar-dark.jpg', alt:'Calendar view on Android, dark mode'}
+      ],
+      mac: [
+        {src:'/shots/mac-1-home-dark.jpg', alt:'dither Home view on Mac, dark mode'},
+        {src:'/shots/mac-2-today-dark.jpg', alt:'Today view on Mac, dark mode'},
+        {src:'/shots/mac-3-scratchpad-dark.jpg', alt:'A scratchpad on Mac, dark mode'},
+        {src:'/shots/mac-4-page-dark.jpg', alt:'A markdown page on Mac, dark mode'},
+        {src:'/shots/mac-5-calendar-dark.jpg', alt:'Calendar view on Mac, dark mode'},
+        {src:'/shots/mac-6-quickadd-dark.jpg', alt:'Quick-add with a natural-language date, on Mac, dark mode'}
+      ]
+    };
+    var platform = 'iphone', index = 0;
+    var img = document.getElementById('shot-img');
+    var dotsEl = document.getElementById('shot-dots');
+    var tabs = document.querySelectorAll('.stab');
+
+    function render(){
+      var list = SHOTS[platform];
+      img.src = list[index].src;
+      img.alt = list[index].alt;
+      dotsEl.innerHTML = '';
+      list.forEach(function(_, i){
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'sdot' + (i === index ? ' active' : '');
+        d.setAttribute('aria-label', 'Screenshot ' + (i + 1) + ' of ' + list.length);
+        d.addEventListener('click', function(){ index = i; render(); });
+        dotsEl.appendChild(d);
+      });
+    }
+
+    tabs.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        tabs.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        platform = btn.dataset.platform;
+        index = 0;
+        render();
+      });
+    });
+    document.querySelector('.sprev').addEventListener('click', function(){
+      var list = SHOTS[platform];
+      index = (index - 1 + list.length) % list.length;
+      render();
+    });
+    document.querySelector('.snext').addEventListener('click', function(){
+      var list = SHOTS[platform];
+      index = (index + 1) % list.length;
+      render();
+    });
+    render();
+  })();
+  </script>
 </div>
 
 <div class="wrap">
