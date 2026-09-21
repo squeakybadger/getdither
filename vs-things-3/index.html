@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dither vs Things 3 — a cross-platform alternative</title>
+<meta name="description" content="How dither compares to Things 3 on price, platforms, sync and features. Things-level polish, without being locked to Apple.">
+<meta property="og:title" content="dither vs Things 3">
+<meta property="og:description" content="Things-level polish, without being locked to Apple. One-time purchase, on Android, iOS, Mac and Windows.">
+<meta property="og:url" content="https://getdither.app/vs-things-3">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='white'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='700' text-anchor='middle'%3E%3Ctspan fill='%233568D4'%3Edt%3C/tspan%3E%3Ctspan fill='%235FA8FF'%3Er%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#101013; --surface:#1a1a1f; --line:#26262c;
+    --ink:#ededf0; --ink2:#9a9aa2;
+    --blue:#3568D4; --sky:#5FA8FF; --good:#5FD98A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--sky);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  nav{display:flex;align-items:center;gap:28px;padding:22px 0}
+  nav .links{margin-left:auto;display:flex;gap:22px;font-size:14px}
+  nav .links a{color:var(--ink2)}
+  nav .links a:hover{color:var(--ink);text-decoration:none}
+
+  .mark{font-size:24px;font-weight:700;letter-spacing:-0.5px}
+  .mark b{color:#fff;font-weight:700}
+  .mark span{color:var(--sky)}
+
+  header.hero{padding:64px 0 48px;text-align:left}
+  .hero h1{
+    font-size:clamp(32px,5.4vw,52px); line-height:1.1; font-weight:700;
+    letter-spacing:-1.2px; max-width:18ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--blue),var(--sky));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub{margin:20px 0 0;font-size:18px;color:var(--ink2);max-width:56ch}
+  .hero .fine{margin-top:16px;font-size:13px;color:var(--ink2)}
+
+  .cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;
+    border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;
+  }
+  .btn.primary{background:var(--blue);color:#fff}
+  .btn.primary:hover{background:#3f74e0;text-decoration:none}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--ink2);text-decoration:none}
+
+  section{padding:48px 0}
+  section h2{font-size:24px;font-weight:700;letter-spacing:-0.4px;margin-bottom:8px}
+  section p.lede{color:var(--ink2);max-width:64ch;margin-bottom:28px}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{text-align:left;padding:14px 18px;font-size:14.5px;border-bottom:1px solid var(--line)}
+  thead th{
+    background:var(--surface);color:var(--ink2);font-weight:600;font-size:13px;
+    text-transform:uppercase;letter-spacing:0.04em;
+  }
+  thead th:first-child{border-top-left-radius:16px}
+  thead th:last-child{border-top-right-radius:16px}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{color:var(--ink2);font-weight:500;white-space:nowrap}
+  td.win{color:var(--good)}
+  td.win b{color:var(--good)}
+  tbody td b{color:var(--ink)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .card h3{font-size:16px;font-weight:600;margin-bottom:10px}
+  .card p{color:var(--ink2);font-size:14.5px}
+
+  .note{
+    margin-top:24px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;font-size:13.5px;color:var(--ink2);
+  }
+  .note b{color:var(--ink)}
+
+  .closing{text-align:center;padding:64px 0}
+  .closing h2{font-size:28px;letter-spacing:-0.6px;margin-bottom:12px}
+  .closing p{color:var(--ink2);max-width:52ch;margin:0 auto 28px}
+  .closing .cta{justify-content:center}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 48px;font-size:13px;color:var(--ink2)}
+  footer .wrap{display:flex;gap:24px;flex-wrap:wrap}
+  footer .spacer{margin-left:auto}
+
+  @media (max-width:640px){
+    .cta{flex-direction:column;align-items:stretch}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a href="/" class="mark" style="text-decoration:none"><b>dith</b><span>er</span></a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="/#download">Download</a>
+      <a href="/buy">Buy</a>
+      <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>dither vs <em>Things 3</em></h1>
+    <p class="sub">Things 3 set the bar for what a to-do app should feel
+    like. dither was built to match that bar — and to fix the one thing
+    Things 3 never will: it only runs on Apple.</p>
+    <div class="cta">
+      <a class="btn primary" href="/#download">Get dither</a>
+      <a class="btn ghost" href="/buy">See pricing</a>
+    </div>
+    <p class="fine">Written by dither's developer — the numbers below
+    are accurate as of this page's last update, but check each app's
+    own store listing for current pricing.</p>
+  </header>
+</div>
+
+<div class="wrap">
+  <section>
+    <h2>At a glance</h2>
+    <p class="lede">Same one-time-purchase philosophy, same attention
+    to detail. The difference is what platform you're allowed to use it on.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>&nbsp;</th><th>dither</th><th>Things 3</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Platforms</td>
+            <td class="win"><b>Android, iPhone, iPad, Mac, Windows</b></td>
+            <td>iPhone, iPad, Mac only</td>
+          </tr>
+          <tr>
+            <td>Pricing model</td>
+            <td>One-time purchase, no subscription</td>
+            <td>One-time purchase, no subscription</td>
+          </tr>
+          <tr>
+            <td>Price per platform</td>
+            <td>$9.99 (Android / iPhone+iPad) · $24.99 (Mac / Windows)</td>
+            <td>$9.99 (iPhone) · $19.99 (iPad) · $49.99 (Mac)</td>
+          </tr>
+          <tr>
+            <td>Free trial</td>
+            <td class="win"><b>21 days, full app, no sign-up</b></td>
+            <td>None — buy first, no trial on any platform</td>
+          </tr>
+          <tr>
+            <td>Sync</td>
+            <td class="win"><b>Your own cloud folder</b> — Drive, Dropbox, iCloud, anything that syncs</td>
+            <td>Things Cloud (Apple's own servers, no self-hosting option)</td>
+          </tr>
+          <tr>
+            <td>Data export</td>
+            <td class="win"><b>Full JSON &amp; Markdown export</b>, always available</td>
+            <td>No built-in full export</td>
+          </tr>
+          <tr>
+            <td>Reminders</td>
+            <td class="win"><b>Re-fire until you act</b> — done or snooze from the notification</td>
+            <td>One-shot system notification</td>
+          </tr>
+          <tr>
+            <td>Task dependencies</td>
+            <td class="win"><b>Yes</b> — lock a to-do until its prerequisite is done</td>
+            <td>Not supported</td>
+          </tr>
+          <tr>
+            <td>Freeform notes / scratchpads</td>
+            <td class="win"><b>Markdown pages, scratchpads, attachments, hand-drawn scribbles</b></td>
+            <td>A notes field per to-do — no standalone notes surface</td>
+          </tr>
+          <tr>
+            <td>Import from Things 3</td>
+            <td class="win"><b>Yes</b> — tasks, projects, areas, tags, deadlines</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Account required</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>On price:</b> owning dither on every platform it
+    ships on ($9.99 + $9.99 + $24.99 + $24.99) costs less than owning
+    Things 3 on the three platforms it ships on ($9.99 + $19.99 +
+    $49.99) — and dither adds Android and Windows, which Things 3
+    doesn't offer at any price.</p>
+  </section>
+
+  <section>
+    <h2>Where Things 3 still has the edge</h2>
+    <p class="lede">Credit where it's due — Things 3 has had a decade
+    to sand down every rough edge, and it shows.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Maturity</h3>
+        <p>Things 3 has been refined since 2017. dither is newer —
+        expect it to keep closing small polish gaps over time.</p>
+      </div>
+      <div class="card">
+        <h3>Native Apple integration</h3>
+        <p>Things 3 goes deeper on Apple-only surfaces built up over
+        years: Shortcuts actions, Apple Watch, a longer-established
+        Mail-to-Things flow.</p>
+      </div>
+      <div class="card">
+        <h3>Ecosystem familiarity</h3>
+        <p>If you've used Things 3 for years and never touch a
+        non-Apple device, cross-platform reach may simply not matter
+        to you — and that's a fair reason to stay.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>Try it free for 21 days</h2>
+    <p>No account, no card, no commitment. See if dither earns the
+    switch on its own terms.</p>
+    <div class="cta">
+      <a class="btn primary" href="/#download">Get dither</a>
+      <a class="btn ghost" href="/">Back to getdither.app</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 komponent</span>
+    <span class="spacer"></span>
+    <a href="https://squeakybadger.github.io/dither-privacy/">Privacy</a>
+    <a href="/buy">Buy</a>
+  </div>
+</footer>
+
+</body>
+</html>
